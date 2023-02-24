@@ -14,6 +14,24 @@ jobs:
             condition: $OS = linux
           run_phase: after_success
           output_format: cyclonedx-xml
+          output_dir: 'python/'
+        deploy:
+        - provider: releases
+          edge: true
+          file_glob: true
+          token: $GHTOKEN
+          cleanup: true
+          on:
+            branch: main
+        - provider: s3
+          access_key_id: $ACCESS_KEY_ID
+          secret_access_key: $ACCESS_KEY_SECRET
+          bucket: "travis-ci-cs"
+          edge: true
+          skip_cleanup: true
+          upload_dir: 'python/'
+          on:
+            branch: main
         mariadb: '10.0'
       script:
         - php hello_world.php
