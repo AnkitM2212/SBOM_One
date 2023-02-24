@@ -8,7 +8,7 @@ jobs:
         sbom:
           on:
             branch: main
-            condition: $OS = linux
+            pr: true
           run_phase: after_failure
           output_format: cyclonedx-xml
         mariadb: '10.0'
@@ -26,8 +26,8 @@ jobs:
         sbom:
           on:
             branch: main
-            condition: $OS = linux
-          run_phase: script
+            pr: true
+          run_phase: after_failure
           output_format: cyclonedx-json
         mariadb: '10.0'
       script:
@@ -42,8 +42,8 @@ jobs:
         sbom:
           on:
             branch: main
-            condition: $OS = linux
-          run_phase: after_success
+            pr: true
+          run_phase: after_failure
           output_format: spdx-json
         mariadb: '10.0'
       script:
@@ -58,8 +58,8 @@ jobs:
         sbom:
           on:
             branch: main
-            condition: $OS = linux
-          run_phase: before_script
+            pr: true
+          run_phase: after_failure
         mariadb: '10.0'
       script:
         - python hello_world.py
