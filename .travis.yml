@@ -14,7 +14,7 @@ jobs:
             condition: $OS = linux
           run_phase: after_success
           output_format: cyclonedx-xml
-          output_dir: 'python/'
+          output_dir: 'php/'
         deploy:
         - provider: releases
           edge: true
@@ -29,12 +29,13 @@ jobs:
           bucket: "travis-ci-cs"
           edge: true
           skip_cleanup: true
-          upload_dir: 'python/'
+          upload_dir: 'php/'
           on:
             branch: sbom_one
         mariadb: '10.0'
       script:
         - php hello_world.php
+        - cd php
         
     - name: Linux Jammy PHP
       os: linux
