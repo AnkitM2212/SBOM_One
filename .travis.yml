@@ -1,41 +1,41 @@
 jobs:
   include:
-    - name: Linux Focal PHP
-      os: linux
-      dist: focal
-      language: php
-      php:
-        - '8.0.21'
-      arch: amd64
-      addons:
-        sbom:
-          on:
-            branch: sbom_one
-            condition: $OS = linux
-          run_phase: after_success
-          output_format: cyclonedx-xml
-          output_dir: 'php/'
-        deploy:
-        - provider: releases
-          edge: true
-          file_glob: true
-          token: $GHTOKEN
-          cleanup: true
-          on:
-            branch: sbom_one
-        - provider: s3
-          access_key_id: $ACCESS_KEY_ID
-          secret_access_key: $ACCESS_KEY_SECRET
-          bucket: "travis-ci-cs"
-          edge: true
-          skip_cleanup: true
-          upload_dir: 'php/'
-          on:
-            branch: sbom_one
-        mariadb: '10.0'
-      script:
-        - php hello_world.php
-        - cd php
+#     - name: Linux Focal PHP
+#       os: linux
+#       dist: focal
+#       language: php
+#       php:
+#         - '8.0.21'
+#       arch: amd64
+#       addons:
+#         sbom:
+#           on:
+#             branch: sbom_one
+#             condition: $OS = linux
+#           run_phase: after_success
+#           output_format: cyclonedx-xml
+#           output_dir: 'php/'
+#         deploy:
+#         - provider: releases
+#           edge: true
+#           file_glob: true
+#           token: $GHTOKEN
+#           cleanup: true
+#           on:
+#             branch: sbom_one
+#         - provider: s3
+#           access_key_id: $ACCESS_KEY_ID
+#           secret_access_key: $ACCESS_KEY_SECRET
+#           bucket: "travis-ci-cs"
+#           edge: true
+#           skip_cleanup: true
+#           upload_dir: 'php/'
+#           on:
+#             branch: sbom_one
+#         mariadb: '10.0'
+#       script:
+#         - php hello_world.php
+#         - cd php
         
     - name: Linux Jammy PHP
       os: linux
@@ -43,49 +43,49 @@ jobs:
       language: php
       php:
         - '8.2.0'
-      arch: amd64
-      addons:
-        sbom:
-          on:
-            branch: sbom_one
-            condition: $OS = linux
-          run_phase: after_success
-          output_format: cyclonedx-xml
-        mariadb: '10.0'
+#       arch: amd64
+#       addons:
+#         sbom:
+#           on:
+#             branch: sbom_one
+#             condition: $OS = linux
+#           run_phase: after_success
+#           output_format: cyclonedx-xml
+#         mariadb: '10.0'
       script:
         - php hello_world.php
     
-    - name: Linux Xenial PHP
-      os: linux
-      dist: xenial
-      language: php
-      arch: amd64
-      addons:
-        sbom:
-          on:
-            branch: sbom_one
-            condition: $OS = linux
-          run_phase: after_success
-          output_format: cyclonedx-xml
-        mariadb: '10.0'
-      script:
-        - php hello_world.php
+#     - name: Linux Xenial PHP
+#       os: linux
+#       dist: xenial
+#       language: php
+#       arch: amd64
+#       addons:
+#         sbom:
+#           on:
+#             branch: sbom_one
+#             condition: $OS = linux
+#           run_phase: after_success
+#           output_format: cyclonedx-xml
+#         mariadb: '10.0'
+#       script:
+#         - php hello_world.php
         
-    - name: Linux Bionic PHP
-      os: linux
-      dist: bionic
-      language: php
-      arch: amd64
-      addons:
-        sbom:
-          on:
-            branch: sbom_one
-            condition: $OS = linux
-          run_phase: after_success
-          output_format: cyclonedx-xml
-        mariadb: '10.0'
-      script:
-        - php hello_world.php
+#     - name: Linux Bionic PHP
+#       os: linux
+#       dist: bionic
+#       language: php
+#       arch: amd64
+#       addons:
+#         sbom:
+#           on:
+#             branch: sbom_one
+#             condition: $OS = linux
+#           run_phase: after_success
+#           output_format: cyclonedx-xml
+#         mariadb: '10.0'
+#       script:
+#         - php hello_world.php
         
 #     - name: Windows PHP (skipping)
 #       os: windows
